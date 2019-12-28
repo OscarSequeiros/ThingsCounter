@@ -7,6 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion AndroidSdk.compile
     defaultConfig {
+        vectorDrawables.useSupportLibrary = true
         applicationId "com.osequeiros.thingscounter"
         minSdkVersion AndroidSdk.min
         targetSdkVersion AndroidSdk.target

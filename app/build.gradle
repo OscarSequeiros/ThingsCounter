@@ -36,4 +36,6 @@ dependencies {
 
     implementation Dependencies.navigationUiLibrary
     implementation Dependencies.navigationFragmentLibrary
+
+    implementation 'com.google.android.material:material:1.0.0'
 }

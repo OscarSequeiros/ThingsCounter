@@ -17,4 +17,9 @@
     <dimen name="text_title">24sp</dimen>
     <dimen name="text_subtitle">16sp</dimen>
 
+    <dimen name="new_item_container_margin_horizontal">24dp</dimen>
+    <dimen name="new_item_container_margin_top">24dp</dimen>
+    <dimen name="new_item_margin_top">12dp</dimen>
+    <dimen name="new_item_container_margin_bottom">56dp</dimen>
+
 </resources>

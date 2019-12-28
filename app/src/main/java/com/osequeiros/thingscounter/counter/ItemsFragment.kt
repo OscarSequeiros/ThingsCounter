@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.osequeiros.thingscounter.R
+import com.osequeiros.thingscounter.add.NewItemBottomSheetDialog
 import kotlinx.android.synthetic.main.fragment_items.*
 
 class ItemsFragment : Fragment() {
@@ -25,12 +26,20 @@ class ItemsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpRecycler()
+        setUpActions()
         adapter.updateItems(generateItems())
     }
 
     private fun setUpRecycler() {
         recyclerItems.layoutManager = LinearLayoutManager(context)
         recyclerItems.adapter = adapter
+    }
+
+    private fun setUpActions() {
+        fabAddItem.setOnClickListener {
+            val bottomSheet = NewItemBottomSheetDialog()
+            bottomSheet.show(activity!!.supportFragmentManager, null)
+        }
     }
 
     private fun generateItems(): List<ItemModel> {

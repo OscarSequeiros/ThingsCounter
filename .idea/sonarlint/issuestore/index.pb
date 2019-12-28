@@ -11,3 +11,7 @@ X
 app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164
 n
 >app/src/main/java/com/osequeiros/thingscounter/MainActivity.kt,d/5/d57319a2ae1238c5153b25e6b1341aae1e3892cf
+~
+Napp/src/main/java/com/osequeiros/thingscounter/add/NewItemBottomSheetDialog.kt,e/5/e56c46214b274459b2182921b97c1783d72bc56a
+w
+Gapp/src/main/java/com/osequeiros/thingscounter/counter/ItemsFragment.kt,4/9/490e7d79229a9bd02169a18475bd800069adbcd3

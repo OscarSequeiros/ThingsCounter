@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion AndroidSdk.compile
     defaultConfig {
@@ -31,11 +33,11 @@ dependencies {
     implementation AndroidxLibraries.appCompatLibrary
     implementation AndroidxLibraries.coreKtxLibrary
     implementation AndroidxLibraries.constraintLayoutLibrary
+    implementation AndroidxLibraries.materialLibrary
 
     testImplementation TestLibraries.junitLibrary
 
-    implementation Dependencies.navigationUiLibrary
-    implementation Dependencies.navigationFragmentLibrary
+    implementation PersistanceLibraries.roomLibrary
 
-    implementation 'com.google.android.material:material:1.0.0'
+    kapt PersistanceLibraries.roomCompiler
 }

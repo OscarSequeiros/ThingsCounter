@@ -1,18 +1,5 @@
 const val kotlinVersion = "1.3.21"
 
-private object Versions {
-    const val navigation = "2.1.0"
-
-    const val junit = "4.12"
-}
-
-object Dependencies {
-
-    const val navigationUiLibrary = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
-    const val navigationFragmentLibrary =
-        "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
-}
-
 object AndroidSdk {
     const val min = 16
     const val compile = 28
@@ -25,12 +12,14 @@ object AndroidxLibraries {
         const val appCompat = "1.1.0"
         const val coreKtx = "1.1.0"
         const val constraint = "1.1.3"
+        const val material = "1.0.0"
     }
 
     const val appCompatLibrary = "androidx.appcompat:appcompat:${Versions.appCompat}"
     const val coreKtxLibrary = "androidx.core:core-ktx:${Versions.coreKtx}"
     const val constraintLayoutLibrary =
         "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
+    const val materialLibrary = "com.google.android.material:material:${Versions.material}"
 }
 
 object KotlinLibraries {
@@ -43,5 +32,20 @@ object KotlinLibraries {
 }
 
 object TestLibraries {
+
+    object Versions {
+        const val junit = "4.12"
+    }
+
     const val junitLibrary = "junit:junit:${Versions.junit}"
+}
+
+object PersistanceLibraries {
+
+    object Versions {
+        const val room = "2.1.0"
+    }
+
+    const val roomLibrary = "androidx.room:room-runtime:${Versions.room}"
+    const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
 }

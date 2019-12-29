@@ -1,10 +1,6 @@
 package com.osequeiros.thingscounter.presentation.view
 
-import android.content.Context
-import android.os.Build
 import android.os.Bundle
-import android.os.VibrationEffect
-import android.os.Vibrator
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +10,7 @@ import com.osequeiros.thingscounter.R
 import com.osequeiros.thingscounter.di.DependenciesProvider
 import com.osequeiros.thingscounter.presentation.CounterContract
 import com.osequeiros.thingscounter.presentation.model.ItemModel
+import com.osequeiros.thingscounter.presentation.vibrate
 import kotlinx.android.synthetic.main.fragment_items.*
 
 class ItemsFragment : Fragment(), CounterContract.View,
@@ -44,7 +41,6 @@ class ItemsFragment : Fragment(), CounterContract.View,
 
         setUpRecycler()
         setUpActions()
-
         presenter.getItems()
     }
 
@@ -55,8 +51,10 @@ class ItemsFragment : Fragment(), CounterContract.View,
 
     private fun setUpActions() {
         fabAddItem.setOnClickListener {
-            val bottomSheet = NewItemBottomSheetDialog.instance(this)
-            bottomSheet.show(activity!!.supportFragmentManager, null)
+            activity?.let {
+                NewItemBottomSheetDialog.instance(this)
+                    .show(it.supportFragmentManager, null)
+            }
         }
     }
 
@@ -73,12 +71,7 @@ class ItemsFragment : Fragment(), CounterContract.View,
     }
 
     override fun prohibitDecrease() {
-        val vibrator: Vibrator? = activity?.getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            vibrator?.vibrate(VibrationEffect.createOneShot(150, VibrationEffect.DEFAULT_AMPLITUDE))
-        } else {
-            vibrator?.vibrate(150)
-        }
+        activity?.vibrate(100)
     }
 
     override fun showTotal(message: String) {

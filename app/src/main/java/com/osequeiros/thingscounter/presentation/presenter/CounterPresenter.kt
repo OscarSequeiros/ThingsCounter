@@ -85,7 +85,7 @@ class CounterPresenter(
         }
         view.showItemList(items)
         val total = items.sumBy { it.quantity }
-        view.showTotal("Total items $total")
+        view.showTotal("Total items:  $total")
     }
 
     private fun manageError(exception: Throwable) {

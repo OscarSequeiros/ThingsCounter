@@ -1,10 +1,12 @@
 package com.osequeiros.thingscounter.data
 
 import com.osequeiros.thingscounter.domain.model.Item
+import io.reactivex.Completable
+import io.reactivex.Single
 
 interface ItemRepository {
 
-    fun save(item: Item)
+    fun save(item: Item): Completable
 
-    fun get(): List<Item>
+    fun get(): Single<List<Item>>
 }

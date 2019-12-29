@@ -17,4 +17,7 @@ interface ItemDao {
 
     @Query("UPDATE ITEM SET is_active = 0 WHERE local_code = :itemCode")
     fun delete(itemCode: Long)
+
+    @Query("SELECT * FROM ITEM WHERE was_send = 0")
+    fun getPendingToSending(): List<ItemRoom>
 }

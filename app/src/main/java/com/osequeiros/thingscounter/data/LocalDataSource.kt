@@ -18,4 +18,8 @@ class LocalDataSource(private val dao: ItemDao) {
     fun delete(itemCode: Long): Completable {
         return Completable.fromAction { dao.delete(itemCode) }
     }
+
+    fun getPending(): Single<List<ItemRoom>> {
+        return Single.fromCallable { dao.getPendingToSending() }
+    }
 }

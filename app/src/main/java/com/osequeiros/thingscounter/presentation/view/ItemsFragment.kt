@@ -16,6 +16,7 @@ import com.osequeiros.thingscounter.di.DependenciesProvider
 import com.osequeiros.thingscounter.presentation.CounterContract
 import com.osequeiros.thingscounter.presentation.model.ItemModel
 import kotlinx.android.synthetic.main.fragment_items.*
+import java.text.FieldPosition
 
 class ItemsFragment : Fragment(), CounterContract.View,
     NewItemCallback,
@@ -92,5 +93,9 @@ class ItemsFragment : Fragment(), CounterContract.View,
 
     override fun decrease(item: ItemModel) {
         presenter.decreaseItem(item)
+    }
+
+    override fun delete(item: ItemModel) {
+        presenter.deleteItem(item)
     }
 }

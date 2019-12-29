@@ -7,4 +7,6 @@ interface ActionsItemCallback {
     fun increase(item: ItemModel)
 
     fun decrease(item: ItemModel)
+
+    fun delete(item: ItemModel)
 }

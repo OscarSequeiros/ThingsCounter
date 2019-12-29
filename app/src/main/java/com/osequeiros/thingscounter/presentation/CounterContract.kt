@@ -16,5 +16,6 @@ interface CounterContract {
         fun createItem(itemModel: ItemModel)
         fun increaseItem(itemModel: ItemModel)
         fun decreaseItem(itemModel: ItemModel)
+        fun deleteItem(itemModel: ItemModel)
     }
 }

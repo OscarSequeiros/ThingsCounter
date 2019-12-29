@@ -1,10 +1,7 @@
 package com.osequeiros.thingscounter.presentation.presenter
 
 import com.osequeiros.thingscounter.domain.exceptions.ForbiddenDecreaseException
-import com.osequeiros.thingscounter.domain.usecases.DecreaseItemQuantityUseCase
-import com.osequeiros.thingscounter.domain.usecases.GetItemsUseCase
-import com.osequeiros.thingscounter.domain.usecases.IncreaseItemQuantityUseCase
-import com.osequeiros.thingscounter.domain.usecases.SaveItemUseCase
+import com.osequeiros.thingscounter.domain.usecases.*
 import com.osequeiros.thingscounter.presentation.CounterContract
 import com.osequeiros.thingscounter.presentation.model.ItemModel
 import com.osequeiros.thingscounter.presentation.model.ItemModelMapper
@@ -17,6 +14,7 @@ class CounterPresenter(
     private val increaseUseCase: IncreaseItemQuantityUseCase,
     private val decreaseUseCase: DecreaseItemQuantityUseCase,
     private val getItemsUseCase: GetItemsUseCase,
+    private val deleteUseCase: DeleteItemUseCase,
     private val view: CounterContract.View,
     private val mapper: ItemModelMapper
 ) : CounterContract.Presenter, BasePresenter() {
@@ -48,6 +46,17 @@ class CounterPresenter(
         launch {
             decreaseUseCase.execute(mapper.map(itemModel))
                 .flatMapCompletable { saveUseCase.execute(it) }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    { getItems() },
+                    { manageError(it) })
+        }
+    }
+
+    override fun deleteItem(itemModel: ItemModel) {
+        launch {
+            deleteUseCase.execute(mapper.map(itemModel))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

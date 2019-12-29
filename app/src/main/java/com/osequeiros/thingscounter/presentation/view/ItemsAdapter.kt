@@ -39,6 +39,7 @@ class ItemsAdapter(
 
             fabDecrease.setOnClickListener { callback.decrease(item) }
             fabIncrease.setOnClickListener { callback.increase(item) }
+            imageDelete.setOnClickListener { callback.delete(item) }
         }
     }
 }

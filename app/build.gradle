@@ -40,6 +40,7 @@ dependencies {
     implementation PersistenceLibraries.roomLibrary
 
     implementation MultithreadLibraries.rxJavaLibrary
+    implementation MultithreadLibraries.rxAndroidLibrary
 
     kapt PersistenceLibraries.roomCompiler
 }

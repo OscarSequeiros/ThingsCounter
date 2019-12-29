@@ -54,7 +54,9 @@ object MultithreadLibraries {
 
     object Versions {
         const val rxjava2 = "2.2.8"
+        const val rxandroid = "2.1.1"
     }
 
     const val rxJavaLibrary = "io.reactivex.rxjava2:rxjava:${Versions.rxjava2}"
+    const val rxAndroidLibrary = "io.reactivex.rxjava2:rxandroid:${Versions.rxandroid}"
 }

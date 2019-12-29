@@ -5,7 +5,8 @@ import com.osequeiros.thingscounter.presentation.model.ItemModel
 interface CounterContract {
 
     interface View {
-        fun showEmptyList()
+        fun showEmptyState()
+        fun hideEmptyState()
         fun showItemList(items: List<ItemModel>)
         fun prohibitDecrease()
         fun showTotal(message: String)

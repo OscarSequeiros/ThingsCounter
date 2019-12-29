@@ -79,10 +79,11 @@ class CounterPresenter(
 
     private fun manageResponse(items: List<ItemModel>) {
         if (items.isEmpty()) {
-            view.showEmptyList()
+            view.showEmptyState()
         } else {
-            view.showItemList(items)
+            view.hideEmptyState()
         }
+        view.showItemList(items)
         val total = items.sumBy { it.quantity }
         view.showTotal("Total items $total")
     }

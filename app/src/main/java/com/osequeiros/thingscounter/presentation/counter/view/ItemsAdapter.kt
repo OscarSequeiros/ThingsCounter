@@ -1,13 +1,17 @@
-package com.osequeiros.thingscounter.counter
+package com.osequeiros.thingscounter.presentation.counter.view
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.osequeiros.thingscounter.R
+import com.osequeiros.thingscounter.presentation.counter.model.ItemModel
 import kotlinx.android.synthetic.main.card_item.view.*
 
-class ItemsAdapter(private var items: List<ItemModel> = emptyList()) :
+class ItemsAdapter(
+    private var items: List<ItemModel> = emptyList(),
+    private val callback: ActionsItemCallback
+) :
     RecyclerView.Adapter<ItemsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,11 +31,14 @@ class ItemsAdapter(private var items: List<ItemModel> = emptyList()) :
         notifyDataSetChanged()
     }
 
-    class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(item: ItemModel) = with(view) {
             textItemTitle.text = item.title
             textItemQuantity.text = item.subtitle
+
+            fabDecrease.setOnClickListener { callback.decrease(item) }
+            fabIncrease.setOnClickListener { callback.increase(item) }
         }
     }
 }

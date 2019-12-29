@@ -1,11 +1,11 @@
-package com.osequeiros.thingscounter.presentation.counter.view
+package com.osequeiros.thingscounter.presentation.view
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.osequeiros.thingscounter.R
-import com.osequeiros.thingscounter.presentation.counter.model.ItemModel
+import com.osequeiros.thingscounter.presentation.model.ItemModel
 import kotlinx.android.synthetic.main.card_item.view.*
 
 class ItemsAdapter(

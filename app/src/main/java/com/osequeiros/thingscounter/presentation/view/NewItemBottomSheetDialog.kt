@@ -1,4 +1,4 @@
-package com.osequeiros.thingscounter.presentation.add
+package com.osequeiros.thingscounter.presentation.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.osequeiros.thingscounter.R
-import com.osequeiros.thingscounter.presentation.counter.model.ItemModel
-import com.osequeiros.thingscounter.presentation.counter.view.NewItemCallback
+import com.osequeiros.thingscounter.presentation.model.ItemModel
 import kotlinx.android.synthetic.main.bottom_sheet_new_item.*
 
 class NewItemBottomSheetDialog : BottomSheetDialogFragment() {

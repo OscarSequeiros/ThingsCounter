@@ -1,4 +1,4 @@
-package com.osequeiros.thingscounter.presentation.counter.model
+package com.osequeiros.thingscounter.presentation.model
 
 data class ItemModel(
     val code: Long = 0,

@@ -1,6 +1,6 @@
-package com.osequeiros.thingscounter.presentation.counter
+package com.osequeiros.thingscounter.presentation
 
-import com.osequeiros.thingscounter.presentation.counter.model.ItemModel
+import com.osequeiros.thingscounter.presentation.model.ItemModel
 
 interface CounterContract {
 

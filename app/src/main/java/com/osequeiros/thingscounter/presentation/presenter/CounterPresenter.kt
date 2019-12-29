@@ -1,13 +1,13 @@
-package com.osequeiros.thingscounter.presentation.counter.presenter
+package com.osequeiros.thingscounter.presentation.presenter
 
 import com.osequeiros.thingscounter.domain.exceptions.ForbiddenDecreaseException
 import com.osequeiros.thingscounter.domain.usecases.DecreaseItemQuantityUseCase
 import com.osequeiros.thingscounter.domain.usecases.GetItemsUseCase
 import com.osequeiros.thingscounter.domain.usecases.IncreaseItemQuantityUseCase
 import com.osequeiros.thingscounter.domain.usecases.SaveItemUseCase
-import com.osequeiros.thingscounter.presentation.counter.CounterContract
-import com.osequeiros.thingscounter.presentation.counter.model.ItemModel
-import com.osequeiros.thingscounter.presentation.counter.model.ItemModelMapper
+import com.osequeiros.thingscounter.presentation.CounterContract
+import com.osequeiros.thingscounter.presentation.model.ItemModel
+import com.osequeiros.thingscounter.presentation.model.ItemModelMapper
 import com.osequeiros.thingscounter.rx.BasePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

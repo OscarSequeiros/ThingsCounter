@@ -3,7 +3,7 @@ package com.osequeiros.thingscounter.presentation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.osequeiros.thingscounter.R
-import com.osequeiros.thingscounter.presentation.counter.view.ItemsFragment
+import com.osequeiros.thingscounter.presentation.view.ItemsFragment
 
 class MainActivity : AppCompatActivity() {
 

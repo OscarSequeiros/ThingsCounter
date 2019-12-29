@@ -1,4 +1,4 @@
-package com.osequeiros.thingscounter.presentation.counter.model
+package com.osequeiros.thingscounter.presentation.model
 
 import com.osequeiros.thingscounter.domain.model.Item
 

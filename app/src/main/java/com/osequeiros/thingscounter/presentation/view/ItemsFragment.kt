@@ -1,4 +1,4 @@
-package com.osequeiros.thingscounter.presentation.counter.view
+package com.osequeiros.thingscounter.presentation.view
 
 import android.content.Context
 import android.os.Build
@@ -13,14 +13,16 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.osequeiros.thingscounter.R
 import com.osequeiros.thingscounter.di.DependenciesProvider
-import com.osequeiros.thingscounter.presentation.add.NewItemBottomSheetDialog
-import com.osequeiros.thingscounter.presentation.counter.CounterContract
-import com.osequeiros.thingscounter.presentation.counter.model.ItemModel
+import com.osequeiros.thingscounter.presentation.CounterContract
+import com.osequeiros.thingscounter.presentation.model.ItemModel
 import kotlinx.android.synthetic.main.fragment_items.*
 
-class ItemsFragment : Fragment(), CounterContract.View, NewItemCallback, ActionsItemCallback {
+class ItemsFragment : Fragment(), CounterContract.View,
+    NewItemCallback,
+    ActionsItemCallback {
 
-    private var adapter = ItemsAdapter(callback = this)
+    private var adapter =
+        ItemsAdapter(callback = this)
 
     private val provider by lazy {
         DependenciesProvider(context ?: throw IllegalArgumentException())

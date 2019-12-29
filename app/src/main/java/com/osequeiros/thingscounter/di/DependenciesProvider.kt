@@ -7,9 +7,9 @@ import com.osequeiros.thingscounter.domain.usecases.DecreaseItemQuantityUseCase
 import com.osequeiros.thingscounter.domain.usecases.GetItemsUseCase
 import com.osequeiros.thingscounter.domain.usecases.IncreaseItemQuantityUseCase
 import com.osequeiros.thingscounter.domain.usecases.SaveItemUseCase
-import com.osequeiros.thingscounter.presentation.counter.CounterContract
-import com.osequeiros.thingscounter.presentation.counter.model.ItemModelMapper
-import com.osequeiros.thingscounter.presentation.counter.presenter.CounterPresenter
+import com.osequeiros.thingscounter.presentation.CounterContract
+import com.osequeiros.thingscounter.presentation.model.ItemModelMapper
+import com.osequeiros.thingscounter.presentation.presenter.CounterPresenter
 
 class DependenciesProvider(context: Context) {
 

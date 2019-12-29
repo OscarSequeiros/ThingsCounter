@@ -43,7 +43,7 @@ object TestLibraries {
 object PersistenceLibraries {
 
     object Versions {
-        const val room = "2.1.0"
+        const val room = "2.2.3"
     }
 
     const val roomLibrary = "androidx.room:room-runtime:${Versions.room}"

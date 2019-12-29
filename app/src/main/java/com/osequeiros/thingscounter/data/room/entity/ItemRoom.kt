@@ -13,7 +13,8 @@ data class ItemRoom(
     val name: String,
     @ColumnInfo(name = "quantity")
     val quantity: Int,
+    @ColumnInfo(name = "is_active")
+    val isActive: Boolean = true,
     @ColumnInfo(name = "was_send")
     val wasSend: Boolean = false
-
 )

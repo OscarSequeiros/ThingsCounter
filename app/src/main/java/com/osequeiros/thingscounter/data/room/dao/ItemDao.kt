@@ -9,12 +9,12 @@ import com.osequeiros.thingscounter.data.room.entity.ItemRoom
 @Dao
 interface ItemDao {
 
-    @Query("SELECT * FROM ITEM")
+    @Query("SELECT * FROM ITEM WHERE is_active = 1")
     fun get(): List<ItemRoom>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(item: ItemRoom)
 
-    @Query("DELETE FROM ITEM WHERE local_code = :itemCode")
+    @Query("UPDATE ITEM SET is_active = 0 WHERE local_code = :itemCode")
     fun delete(itemCode: Long)
 }

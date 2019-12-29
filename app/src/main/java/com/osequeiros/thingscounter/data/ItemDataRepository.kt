@@ -18,4 +18,8 @@ class ItemDataRepository(
         return localDataSource.get()
             .map { mapper.map(it) }
     }
+
+    override fun delete(item: Item): Completable {
+        return localDataSource.delete(item.code)
+    }
 }

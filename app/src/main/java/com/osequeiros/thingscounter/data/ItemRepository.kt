@@ -9,4 +9,6 @@ interface ItemRepository {
     fun save(item: Item): Completable
 
     fun get(): Single<List<Item>>
+
+    fun delete(item: Item): Completable
 }

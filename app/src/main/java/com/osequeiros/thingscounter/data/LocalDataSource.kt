@@ -14,4 +14,8 @@ class LocalDataSource(private val dao: ItemDao) {
     fun get(): Single<List<ItemRoom>> {
         return Single.fromCallable { dao.get() }
     }
+
+    fun delete(itemCode: Long): Completable {
+        return Completable.fromAction { dao.delete(itemCode) }
+    }
 }

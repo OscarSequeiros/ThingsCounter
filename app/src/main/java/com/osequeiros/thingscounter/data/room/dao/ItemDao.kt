@@ -14,4 +14,7 @@ interface ItemDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(item: ItemRoom)
+
+    @Query("DELETE FROM ITEM WHERE local_code = :itemCode")
+    fun delete(itemCode: Long)
 }

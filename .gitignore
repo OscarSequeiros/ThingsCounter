@@ -9,6 +9,7 @@
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
 /.idea/sonarlint
+/.idea/sonarlint/
 .DS_Store
 /build
 /captures
@@ -38,7 +39,7 @@ out/
 .gradle/
 build/
 buildSrc/build
-buildSrc/build/kotlin/
+/buildSrc/build/
 
 # Local configuration file (sdk path, etc)
 local.properties

@@ -40,7 +40,7 @@ object TestLibraries {
     const val junitLibrary = "junit:junit:${Versions.junit}"
 }
 
-object PersistanceLibraries {
+object PersistenceLibraries {
 
     object Versions {
         const val room = "2.1.0"
@@ -48,4 +48,13 @@ object PersistanceLibraries {
 
     const val roomLibrary = "androidx.room:room-runtime:${Versions.room}"
     const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
+}
+
+object MultithreadLibraries {
+
+    object Versions {
+        const val rxjava2 = "2.2.8"
+    }
+
+    const val rxJavaLibrary = "io.reactivex.rxjava2:rxjava:${Versions.rxjava2}"
 }

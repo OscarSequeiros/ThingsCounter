@@ -37,7 +37,9 @@ dependencies {
 
     testImplementation TestLibraries.junitLibrary
 
-    implementation PersistanceLibraries.roomLibrary
+    implementation PersistenceLibraries.roomLibrary
 
-    kapt PersistanceLibraries.roomCompiler
+    implementation MultithreadLibraries.rxJavaLibrary
+
+    kapt PersistenceLibraries.roomCompiler
 }

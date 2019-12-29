@@ -1,10 +1,11 @@
 package com.osequeiros.thingscounter.domain.usecases
 
 import com.osequeiros.thingscounter.domain.model.Item
+import io.reactivex.Single
 
-class IncreasetItemQuantityUseCase {
+class IncreaseItemQuantityUseCase() {
 
-    fun execute(item: Item): Item {
-        return item.copy(quantity = item.quantity + 1)
+    fun execute(item: Item): Single<Item> {
+        return Single.fromCallable { item.copy(quantity = item.quantity + 1) }
     }
 }

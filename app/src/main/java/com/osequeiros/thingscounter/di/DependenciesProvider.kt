@@ -3,10 +3,7 @@ package com.osequeiros.thingscounter.di
 import android.content.Context
 import com.osequeiros.thingscounter.data.*
 import com.osequeiros.thingscounter.data.room.ThingsCounterDB
-import com.osequeiros.thingscounter.domain.usecases.DecreaseItemQuantityUseCase
-import com.osequeiros.thingscounter.domain.usecases.GetItemsUseCase
-import com.osequeiros.thingscounter.domain.usecases.IncreaseItemQuantityUseCase
-import com.osequeiros.thingscounter.domain.usecases.SaveItemUseCase
+import com.osequeiros.thingscounter.domain.usecases.*
 import com.osequeiros.thingscounter.presentation.CounterContract
 import com.osequeiros.thingscounter.presentation.model.ItemModelMapper
 import com.osequeiros.thingscounter.presentation.presenter.CounterPresenter
@@ -30,6 +27,7 @@ class DependenciesProvider(context: Context) {
     private val increaseUseCase = IncreaseItemQuantityUseCase()
     private val decreaseUseCase = DecreaseItemQuantityUseCase()
     private val getItemsUseCase = GetItemsUseCase(itemRepository)
+    private val deleteUseCase = DeleteItemUseCase(itemRepository)
 
     private val itemModelMapper = ItemModelMapper()
 
@@ -38,6 +36,7 @@ class DependenciesProvider(context: Context) {
         increaseUseCase = increaseUseCase,
         decreaseUseCase = decreaseUseCase,
         getItemsUseCase = getItemsUseCase,
+        deleteUseCase = deleteUseCase,
         mapper = itemModelMapper,
         view = view
     ) as CounterContract.Presenter

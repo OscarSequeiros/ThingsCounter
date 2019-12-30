@@ -1,5 +1,3 @@
-const val kotlinVersion = "1.3.21"
-
 object AndroidSdk {
     const val min = 16
     const val compile = 28

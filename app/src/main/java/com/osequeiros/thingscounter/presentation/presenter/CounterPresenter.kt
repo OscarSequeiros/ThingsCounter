@@ -6,6 +6,7 @@ import com.osequeiros.thingscounter.presentation.CounterContract
 import com.osequeiros.thingscounter.presentation.model.ItemModel
 import com.osequeiros.thingscounter.presentation.model.ItemModelMapper
 import com.osequeiros.thingscounter.rx.BasePresenter
+import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -20,43 +21,32 @@ class CounterPresenter(
 ) : CounterContract.Presenter, BasePresenter() {
 
     override fun createItem(itemModel: ItemModel) {
-        launch {
+        launchModification {
             saveUseCase.execute(mapper.map(itemModel))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                    { getItems() },
-                    { manageError(it) })
         }
     }
 
     override fun increaseItem(itemModel: ItemModel) {
-        launch {
+        launchModification {
             increaseUseCase.execute(mapper.map(itemModel))
                 .flatMapCompletable { saveUseCase.execute(it) }
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                    { getItems() },
-                    { manageError(it) })
         }
     }
 
     override fun decreaseItem(itemModel: ItemModel) {
-        launch {
+        launchModification {
             decreaseUseCase.execute(mapper.map(itemModel))
                 .flatMapCompletable { saveUseCase.execute(it) }
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                    { getItems() },
-                    { manageError(it) })
         }
     }
 
     override fun deleteItem(itemModel: ItemModel) {
+        launchModification { deleteUseCase.execute(mapper.map(itemModel)) }
+    }
+
+    private fun launchModification(completable: () -> Completable) {
         launch {
-            deleteUseCase.execute(mapper.map(itemModel))
+            completable.invoke()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

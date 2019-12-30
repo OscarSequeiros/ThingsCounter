@@ -10,6 +10,7 @@ import com.osequeiros.thingscounter.R
 import com.osequeiros.thingscounter.di.DependenciesProvider
 import com.osequeiros.thingscounter.presentation.CounterContract
 import com.osequeiros.thingscounter.presentation.model.ItemModel
+import com.osequeiros.thingscounter.presentation.toast
 import com.osequeiros.thingscounter.presentation.vibrate
 import kotlinx.android.synthetic.main.fragment_items.*
 
@@ -72,6 +73,10 @@ class ItemsFragment : Fragment(), CounterContract.View,
 
     override fun prohibitDecrease() {
         activity?.vibrate(100)
+    }
+
+    override fun showNameRequiredMessage() {
+        context?.toast(getString(R.string.item_name_required))
     }
 
     override fun showTotal(message: String) {

@@ -6,6 +6,7 @@ import android.content.Context
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.widget.Toast
 
 fun Context.vibrate(timeInMillis: Long) {
     val vibrator: Vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
@@ -19,4 +20,8 @@ fun Context.vibrate(timeInMillis: Long) {
     } else {
         vibrator.vibrate(timeInMillis)
     }
+}
+
+fun Context.toast(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 }

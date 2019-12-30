@@ -1,6 +1,7 @@
 package com.osequeiros.thingscounter.presentation.presenter
 
 import com.osequeiros.thingscounter.domain.exceptions.ForbiddenDecreaseException
+import com.osequeiros.thingscounter.domain.exceptions.ItemNameExpectedException
 import com.osequeiros.thingscounter.domain.usecases.*
 import com.osequeiros.thingscounter.presentation.CounterContract
 import com.osequeiros.thingscounter.presentation.model.ItemModel
@@ -79,8 +80,9 @@ class CounterPresenter(
     }
 
     private fun manageError(exception: Throwable) {
-        if (exception is ForbiddenDecreaseException) {
-            view.prohibitDecrease()
+        when (exception) {
+            is ForbiddenDecreaseException -> view.prohibitDecrease()
+            is ItemNameExpectedException -> view.showNameRequiredMessage()
         }
     }
 }

@@ -9,6 +9,7 @@ interface CounterContract {
         fun hideEmptyState()
         fun showItemList(items: List<ItemModel>)
         fun prohibitDecrease()
+        fun showNameRequiredMessage()
         fun showTotal(message: String)
     }
 

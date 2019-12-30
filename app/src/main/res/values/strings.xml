@@ -5,4 +5,5 @@
     <string name="add_item">Add</string>
     <string name="empty_list_title">No items yet!</string>
     <string name="empty_list_subtitle">Tab on + button to add someone</string>
+    <string name="item_name_required">Item name is required</string>
 </resources>

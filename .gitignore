@@ -15,6 +15,7 @@
 /captures
 .externalNativeBuild
 .cxx
+app/release/
 =======
 # Built application files
 *.apk

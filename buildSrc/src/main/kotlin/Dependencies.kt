@@ -1,3 +1,5 @@
+import NavigationLibraries.Versions.navigation
+
 object AndroidSdk {
     const val min = 16
     const val compile = 28
@@ -57,4 +59,15 @@ object MultithreadLibraries {
 
     const val rxJavaLibrary = "io.reactivex.rxjava2:rxjava:${Versions.rxjava2}"
     const val rxAndroidLibrary = "io.reactivex.rxjava2:rxandroid:${Versions.rxandroid}"
+}
+
+
+object NavigationLibraries {
+
+    object Versions {
+        const val navigation = "2.2.0"
+    }
+
+    const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:$navigation"
+    const val navigationUi = "androidx.navigation:navigation-ui-ktx:$navigation"
 }

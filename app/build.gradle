@@ -42,5 +42,8 @@ dependencies {
     implementation MultithreadLibraries.rxJavaLibrary
     implementation MultithreadLibraries.rxAndroidLibrary
 
+    implementation NavigationLibraries.navigationFragment
+    implementation NavigationLibraries.navigationUi
+
     kapt PersistenceLibraries.roomCompiler
 }

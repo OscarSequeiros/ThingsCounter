@@ -1,6 +1,7 @@
 package com.osequeiros.thingscounter.presentation.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,10 +35,12 @@ class ItemsFragment : Fragment(), CounterContract.View,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.e("ItemsFragment", "onCreateView")
         return inflater.inflate(R.layout.fragment_items, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Log.e("ItemsFragment", "onViewCreated")
         super.onViewCreated(view, savedInstanceState)
 
         setUpRecycler()
@@ -53,8 +56,7 @@ class ItemsFragment : Fragment(), CounterContract.View,
     private fun setUpActions() {
         fabAddItem.setOnClickListener {
             activity?.let {
-                NewItemBottomSheetDialog.instance(this)
-                    .show(it.supportFragmentManager, null)
+                NewItemDialog.instance(this).show(it.supportFragmentManager, null)
             }
         }
     }
@@ -97,5 +99,10 @@ class ItemsFragment : Fragment(), CounterContract.View,
 
     override fun delete(item: ItemModel) {
         presenter.deleteItem(item)
+    }
+
+    override fun onStop() {
+        presenter.stop()
+        super.onStop()
     }
 }

@@ -6,7 +6,7 @@ import com.osequeiros.thingscounter.domain.usecases.*
 import com.osequeiros.thingscounter.presentation.CounterContract
 import com.osequeiros.thingscounter.presentation.model.ItemModel
 import com.osequeiros.thingscounter.presentation.model.ItemModelMapper
-import com.osequeiros.thingscounter.rx.BasePresenter
+import com.osequeiros.thingscounter.rx.AbstractPresenter
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -19,7 +19,7 @@ class CounterPresenter(
     private val deleteUseCase: DeleteItemUseCase,
     private val view: CounterContract.View,
     private val mapper: ItemModelMapper
-) : CounterContract.Presenter, BasePresenter() {
+) : CounterContract.Presenter, AbstractPresenter() {
 
     override fun createItem(itemModel: ItemModel) {
         launchModification {

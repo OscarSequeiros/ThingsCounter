@@ -41,7 +41,7 @@
     </style>
 
     <style name="ModalStyle" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@drawable/top_radius_background
+        <item name="android:background">@drawable/dialog_radius_corner
         </item>
     </style>
 

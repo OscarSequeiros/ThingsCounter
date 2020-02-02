@@ -1,35 +1,42 @@
 package com.osequeiros.thingscounter.presentation.view
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.InsetDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.osequeiros.thingscounter.R
 import com.osequeiros.thingscounter.presentation.model.ItemModel
-import kotlinx.android.synthetic.main.bottom_sheet_new_item.*
+import kotlinx.android.synthetic.main.dialog_new_item.*
 
-class NewItemBottomSheetDialog : BottomSheetDialogFragment() {
+class NewItemDialog : DialogFragment() {
 
     private var callback: NewItemCallback? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setStyle(DialogFragment.STYLE_NORMAL, R.style.BottomSheetDialogTheme)
-    }
-
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.bottom_sheet_new_item, container, false)
+        return inflater.inflate(R.layout.dialog_new_item, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpActions()
+    }
+
+    override fun onStart() {
+        dialog?.window?.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        val color = ColorDrawable(Color.TRANSPARENT)
+        val inset = InsetDrawable(color, 40)
+        dialog?.window?.setBackgroundDrawable(inset)
+
+        super.onStart()
     }
 
     private fun setUpActions() {
@@ -42,8 +49,8 @@ class NewItemBottomSheetDialog : BottomSheetDialogFragment() {
 
     companion object {
 
-        fun instance(newItemCallback: NewItemCallback): NewItemBottomSheetDialog {
-            return NewItemBottomSheetDialog().also {
+        fun instance(newItemCallback: NewItemCallback): NewItemDialog {
+            return NewItemDialog().also {
                 it.callback = newItemCallback
             }
         }

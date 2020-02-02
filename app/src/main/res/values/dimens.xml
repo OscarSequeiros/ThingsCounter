@@ -23,4 +23,11 @@
     <dimen name="new_item_margin_top">12dp</dimen>
     <dimen name="new_item_container_margin_bottom">56dp</dimen>
 
+    <dimen name="dimen_8dp">8dp</dimen>
+    <dimen name="dimen_12dp">12dp</dimen>
+    <dimen name="dimen_14dp">14dp</dimen>
+    <dimen name="dimen_16dp">16dp</dimen>
+    <dimen name="dimen_20dp">20dp</dimen>
+    <dimen name="dimen_24dp">24dp</dimen>
+
 </resources>

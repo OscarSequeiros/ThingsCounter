@@ -1,6 +1,7 @@
 package com.osequeiros.thingscounter.presentation
 
 import com.osequeiros.thingscounter.presentation.model.ItemModel
+import com.osequeiros.thingscounter.rx.BasePresenter
 
 interface CounterContract {
 
@@ -13,7 +14,7 @@ interface CounterContract {
         fun showTotal(message: String)
     }
 
-    interface Presenter {
+    interface Presenter : BasePresenter {
         fun getItems()
         fun createItem(itemModel: ItemModel)
         fun increaseItem(itemModel: ItemModel)

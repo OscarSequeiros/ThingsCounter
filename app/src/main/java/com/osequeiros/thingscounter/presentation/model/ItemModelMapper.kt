@@ -12,7 +12,7 @@ class ItemModelMapper {
         )
     }
 
-    fun map(item: Item): ItemModel {
+    private fun map(item: Item): ItemModel {
         return ItemModel(
             code = item.code,
             title = item.name,

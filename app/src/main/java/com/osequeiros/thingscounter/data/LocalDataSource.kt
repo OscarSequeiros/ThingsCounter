@@ -1,11 +1,15 @@
 package com.osequeiros.thingscounter.data
 
-import com.osequeiros.thingscounter.data.room.dao.ItemDao
+import com.osequeiros.thingscounter.data.room.dao.RoomItem
 import com.osequeiros.thingscounter.data.room.entity.ItemRoom
 import io.reactivex.Completable
 import io.reactivex.Single
 
-class LocalDataSource(private val dao: ItemDao) {
+class LocalDataSource(private val dao: RoomItem) {
+
+    fun create(itemRoom: ItemRoom): Single<ItemRoom> {
+        return Single.fromCallable { itemRoom.copy(localCode = dao.insert(itemRoom)) }
+    }
 
     fun save(itemRoom: ItemRoom): Completable {
         return Completable.fromAction { dao.insert(itemRoom) }

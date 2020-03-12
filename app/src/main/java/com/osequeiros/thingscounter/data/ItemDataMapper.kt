@@ -17,7 +17,7 @@ class ItemDataMapper {
         return items.map { map(it) }
     }
 
-    private fun map(item: ItemRoom): Item {
+    fun map(item: ItemRoom): Item {
         return Item(
             code = item.localCode,
             name = item.name,

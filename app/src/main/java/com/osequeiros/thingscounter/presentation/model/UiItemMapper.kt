@@ -2,9 +2,9 @@ package com.osequeiros.thingscounter.presentation.model
 
 import com.osequeiros.thingscounter.domain.model.Item
 
-class ItemModelMapper {
+class UiItemMapper {
 
-    fun map(itemModel: ItemModel): Item {
+    fun map(itemModel: UiItem): Item {
         return Item(
             code = itemModel.code,
             name = itemModel.title,
@@ -12,15 +12,15 @@ class ItemModelMapper {
         )
     }
 
-    private fun map(item: Item): ItemModel {
-        return ItemModel(
+    fun map(item: Item): UiItem {
+        return UiItem(
             code = item.code,
             title = item.name,
             quantity = item.quantity
         )
     }
 
-    fun map(items: List<Item>): List<ItemModel> {
+    fun map(items: List<Item>): List<UiItem> {
         return items.map { map(it) }
     }
 }

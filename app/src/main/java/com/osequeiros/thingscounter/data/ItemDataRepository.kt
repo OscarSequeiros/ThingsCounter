@@ -10,6 +10,10 @@ class ItemDataRepository(
     private val mapper: ItemDataMapper
 ) : ItemRepository {
 
+    override fun create(item: Item): Single<Item> {
+        return localDataSource.create(mapper.map(item)).map { mapper.map(it) }
+    }
+
     override fun save(item: Item): Completable {
         return localDataSource.save(mapper.map(item))
     }

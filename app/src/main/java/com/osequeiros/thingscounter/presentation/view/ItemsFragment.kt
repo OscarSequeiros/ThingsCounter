@@ -5,28 +5,36 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.osequeiros.thingscounter.R
-import com.osequeiros.thingscounter.di.DependenciesProvider
-import com.osequeiros.thingscounter.presentation.CounterContract
-import com.osequeiros.thingscounter.presentation.model.ItemModel
-import com.osequeiros.thingscounter.presentation.toast
-import com.osequeiros.thingscounter.presentation.vibrate
+import com.osequeiros.thingscounter.domain.exceptions.ForbiddenDecreaseException
+import com.osequeiros.thingscounter.domain.exceptions.ItemNameExpectedException
+import com.osequeiros.thingscounter.presentation.*
+import com.osequeiros.thingscounter.presentation.ItemsIntent.*
+import com.osequeiros.thingscounter.presentation.model.UiItem
+import com.osequeiros.thingscounter.util.visible
+import io.reactivex.Observable
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.fragment_items.*
 
-class ItemsFragment : Fragment(), CounterContract.View,
-    NewItemCallback,
-    ActionsItemCallback {
+class ItemsFragment : Fragment(), NewItemCallback, ActionsItemCallback {
 
-    private var adapter =
-        ItemsAdapter(callback = this)
+    private val namePublisher = PublishSubject.create<NameItemIntent>()
+    private val savePublisher = PublishSubject.create<CreateItemIntent>()
+    private val increasePublisher = PublishSubject.create<IncreaseCountIntent>()
+    private val decreasePublisher = PublishSubject.create<DecreaseCountIntent>()
+    private val deletePublisher = PublishSubject.create<DeleteItemIntent>()
 
-    private val provider by lazy {
-        DependenciesProvider(context ?: throw IllegalArgumentException())
-    }
 
-    private val presenter by lazy {
-        provider.instanceCounterPresenter(this)
+    private var adapter = ItemsAdapter(callback = this)
+
+    private val disposables = CompositeDisposable()
+
+    private val viewModel: ItemsViewModel by lazy(LazyThreadSafetyMode.NONE) {
+        ViewModelProvider(this, ItemsViewModelFactory(context ?: throw IllegalArgumentException()))
+            .get(ItemsViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -42,8 +50,53 @@ class ItemsFragment : Fragment(), CounterContract.View,
 
         setUpRecycler()
         setUpActions()
-        presenter.getItems()
     }
+
+    override fun onStart() {
+        bind()
+        super.onStart()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        disposables.clear()
+    }
+
+    private fun bind() {
+        disposables.add(viewModel.states().subscribe(this::render))
+        viewModel.processIntents(intents())
+    }
+
+    private fun render(state: ItemsViewState) {
+        manageItems(state.items)
+        manageExceptions(state.error)
+    }
+
+    private fun manageItems(items: List<UiItem>) {
+        constraintEmptyState.visible(items.isEmpty())
+        showItemList(items)
+        showTotal("Total items: ${items.sumBy { it.quantity }}")
+    }
+
+    private fun manageExceptions(throwable: Throwable?) {
+        when (throwable) {
+            is ForbiddenDecreaseException -> prohibitDecrease()
+            is ItemNameExpectedException -> showNameRequiredMessage()
+        }
+    }
+
+    private fun intents(): Observable<ItemsIntent> {
+        return Observable.merge(
+            loadIntent(),
+            namePublisher
+        )
+            .mergeWith(increasePublisher)
+            .mergeWith(decreasePublisher)
+            .mergeWith(savePublisher)
+            .mergeWith(deletePublisher)
+    }
+
+    private fun loadIntent() = Observable.just(LoadAllItemsIntent)
 
     private fun setUpRecycler() {
         recyclerItems.layoutManager = LinearLayoutManager(context)
@@ -58,48 +111,35 @@ class ItemsFragment : Fragment(), CounterContract.View,
         }
     }
 
-    override fun showEmptyState() {
-        constraintEmptyState.visibility = View.VISIBLE
-    }
-
-    override fun hideEmptyState() {
-        constraintEmptyState.visibility = View.GONE
-    }
-
-    override fun showItemList(items: List<ItemModel>) {
+    private fun showItemList(items: List<UiItem>) {
         adapter.updateItems(items)
     }
 
-    override fun prohibitDecrease() {
+    private fun prohibitDecrease() {
         activity?.vibrate(150)
     }
 
-    override fun showNameRequiredMessage() {
+    private fun showNameRequiredMessage() {
         context?.toast(getString(R.string.item_name_required))
     }
 
-    override fun showTotal(message: String) {
+    private fun showTotal(message: String) {
         textToolbar.text = message
     }
 
-    override fun addItem(model: ItemModel) {
-        presenter.createItem(model)
+    override fun addItem(item: UiItem) {
+        savePublisher.onNext(CreateItemIntent(item))
     }
 
-    override fun increase(item: ItemModel) {
-        presenter.increaseItem(item)
+    override fun increase(item: UiItem) {
+        increasePublisher.onNext(IncreaseCountIntent(item))
     }
 
-    override fun decrease(item: ItemModel) {
-        presenter.decreaseItem(item)
+    override fun decrease(item: UiItem) {
+        decreasePublisher.onNext(DecreaseCountIntent(item))
     }
 
-    override fun delete(item: ItemModel) {
-        presenter.deleteItem(item)
-    }
-
-    override fun onStop() {
-        presenter.stop()
-        super.onStop()
+    override fun delete(item: UiItem) {
+        deletePublisher.onNext(DeleteItemIntent(item))
     }
 }

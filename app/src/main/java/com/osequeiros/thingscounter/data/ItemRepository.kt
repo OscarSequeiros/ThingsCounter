@@ -6,6 +6,8 @@ import io.reactivex.Single
 
 interface ItemRepository {
 
+    fun create(item: Item): Single<Item>
+
     fun save(item: Item): Completable
 
     fun get(): Single<List<Item>>

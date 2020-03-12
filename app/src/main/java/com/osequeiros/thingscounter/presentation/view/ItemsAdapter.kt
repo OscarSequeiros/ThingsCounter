@@ -5,11 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.osequeiros.thingscounter.R
-import com.osequeiros.thingscounter.presentation.model.ItemModel
+import com.osequeiros.thingscounter.presentation.model.UiItem
 import kotlinx.android.synthetic.main.card_item.view.*
 
 class ItemsAdapter(
-    private var items: List<ItemModel> = emptyList(),
+    private var items: List<UiItem> = emptyList(),
     private val callback: ActionsItemCallback
 ) :
     RecyclerView.Adapter<ItemsAdapter.ViewHolder>() {
@@ -26,14 +26,14 @@ class ItemsAdapter(
         holder.bind(items[position])
     }
 
-    fun updateItems(items: List<ItemModel>) {
+    fun updateItems(items: List<UiItem>) {
         this.items = items
         notifyDataSetChanged()
     }
 
     inner class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
-        fun bind(item: ItemModel) = with(view) {
+        fun bind(item: UiItem) = with(view) {
             textItemTitle.text = item.title
             textItemQuantity.text = item.subtitle
 

@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.osequeiros.thingscounter.R
-import com.osequeiros.thingscounter.presentation.model.ItemModel
+import com.osequeiros.thingscounter.presentation.model.UiItem
 import kotlinx.android.synthetic.main.dialog_new_item.*
 
 class NewItemDialog : DialogFragment() {
@@ -41,7 +41,7 @@ class NewItemDialog : DialogFragment() {
 
     private fun setUpActions() {
         buttonAddItem.setOnClickListener {
-            val item = ItemModel(title = editNewItem.text.toString())
+            val item = UiItem(title = editNewItem.text.toString())
             callback?.addItem(item)
             dismiss()
         }

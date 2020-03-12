@@ -7,16 +7,5 @@ import io.reactivex.Completable
 
 class SaveItemUseCase(private val repository: ItemRepository) {
 
-    fun execute(item: Item): Completable {
-        return validateFields(item)
-            .andThen(repository.save(item))
-    }
-
-    private fun validateFields(item: Item): Completable {
-        return Completable.fromAction {
-            if (item.name.isBlank()) {
-                throw ItemNameExpectedException()
-            }
-        }
-    }
+    fun execute(item: Item): Completable = repository.save(item)
 }

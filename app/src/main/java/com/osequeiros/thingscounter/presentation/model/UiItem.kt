@@ -1,8 +1,8 @@
 package com.osequeiros.thingscounter.presentation.model
 
-data class ItemModel(
+data class UiItem(
     val code: Long = 0,
-    val title: String,
+    val title: String = "",
     val quantity: Int = 0
 ) {
 

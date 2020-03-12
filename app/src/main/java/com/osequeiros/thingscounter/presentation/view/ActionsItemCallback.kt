@@ -1,12 +1,12 @@
 package com.osequeiros.thingscounter.presentation.view
 
-import com.osequeiros.thingscounter.presentation.model.ItemModel
+import com.osequeiros.thingscounter.presentation.model.UiItem
 
 interface ActionsItemCallback {
 
-    fun increase(item: ItemModel)
+    fun increase(item: UiItem)
 
-    fun decrease(item: ItemModel)
+    fun decrease(item: UiItem)
 
-    fun delete(item: ItemModel)
+    fun delete(item: UiItem)
 }

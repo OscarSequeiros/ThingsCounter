@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.osequeiros.thingscounter.data.room.dao.ItemDao
+import com.osequeiros.thingscounter.data.room.dao.RoomItem
 import com.osequeiros.thingscounter.data.room.entity.ItemRoom
 
 @Database(
@@ -13,7 +13,7 @@ import com.osequeiros.thingscounter.data.room.entity.ItemRoom
 )
 abstract class ThingsCounterDB : RoomDatabase() {
 
-    abstract fun itemRoomDao(): ItemDao
+    abstract fun itemRoomDao(): RoomItem
 
     companion object {
 

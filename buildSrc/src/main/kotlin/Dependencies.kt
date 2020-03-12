@@ -1,3 +1,5 @@
+import AndroidxLibraries.Versions.lifecycle
+import MultithreadLibraries.Versions.rxandroid
 import NavigationLibraries.Versions.navigation
 
 object AndroidSdk {
@@ -13,6 +15,7 @@ object AndroidxLibraries {
         const val coreKtx = "1.1.0"
         const val constraint = "1.1.3"
         const val material = "1.0.0"
+        const val lifecycle = "2.2.0"
     }
 
     const val appCompatLibrary = "androidx.appcompat:appcompat:${Versions.appCompat}"
@@ -20,6 +23,9 @@ object AndroidxLibraries {
     const val constraintLayoutLibrary =
         "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
     const val materialLibrary = "com.google.android.material:material:${Versions.material}"
+    const val lifecycleLibrary = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle"
+    const val lifecycleExtensions =  "androidx.lifecycle:lifecycle-extensions:2.2.0"
+
 }
 
 object KotlinLibraries {
@@ -58,7 +64,7 @@ object MultithreadLibraries {
     }
 
     const val rxJavaLibrary = "io.reactivex.rxjava2:rxjava:${Versions.rxjava2}"
-    const val rxAndroidLibrary = "io.reactivex.rxjava2:rxandroid:${Versions.rxandroid}"
+    const val rxAndroidLibrary = "io.reactivex.rxjava2:rxandroid:${rxandroid}"
 }
 
 
